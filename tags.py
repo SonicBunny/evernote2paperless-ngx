@@ -20,8 +20,6 @@ tag_list = [
     "Larry",
     "new",
     "old",
-    "borrowed",
-    "blue",
     "this",
     "that",
 ]
@@ -45,11 +43,6 @@ def random_color():
     import random
     return random.choice(tag_colors)    
 
-# def get_tags(paperless):
-#     """Get all tags."""
-#     tags = paperless.tags.iterate()
-#     return tags
-
 async def main():
     """Execute main function."""
     names = []
@@ -67,12 +60,12 @@ async def main():
             print(tag.user_can_change)
             names.append(tag.name.lower())
         
-        # for tag in tag_list:
-        #     from pypaperless.models import TagPost
-        #     if tag.lower() not in names:
-        #         print(f"Creating tag {tag}")
-        #         new_tag = TagPost(name=tag, color=random_color())
-        #         await paperless.tags.create(new_tag)
+        for tag in tag_list:
+            from pypaperless.models import TagPost
+            if tag.lower() not in names:
+                print(f"Creating tag {tag}")
+                new_tag = TagPost(name=tag, color=random_color())
+                await paperless.tags.create(new_tag)
 
 
 if __name__ == "__main__":
